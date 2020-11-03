@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "format": "prettier \"src/**/*.{js,html}\" --write",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/Mayvis/adopt-me/issues"
   },
-  "homepage": "https://github.com/Mayvis/adopt-me#readme",
-  "devDependencies": {
-    "prettier": "^2.1.2"
-  }
+  "homepage": "https://github.com/Mayvis/adopt-me#readme"
 }
