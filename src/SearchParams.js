@@ -6,8 +6,17 @@ function SearchParams() {
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dogs", ANIMALS);
-  // eslint-disable-next-line
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
+  const [pets, setPets] = useState([]);
+
+  async function requestPets() {
+    const { animals } = await pet.animals({
+      location,
+      breed,
+      type: animal,
+    });
+    setPets(animals || []);
+  }
 
   useEffect(() => {
     setBreeds([]);
@@ -19,8 +28,12 @@ function SearchParams() {
 
   return (
     <div className="search-params">
-      <h1>{location}</h1>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          requestPets();
+        }}
+      >
         <label htmlFor="location">
           Location
           <input
