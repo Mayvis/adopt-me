@@ -1,12 +1,21 @@
-import React, { useState } from "react";
-import { ANIMALS } from "@frontendmasters/pet";
+import React, { useState, useEffect } from "react";
+import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
 
 function SearchParams() {
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dogs", ANIMALS);
-  const [breed, BreedDropdown] = useDropdown("Breed", "", breeds);
+  // eslint-disable-next-line
+  const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
+
+  useEffect(() => {
+    setBreeds([]);
+    setBreed("");
+    pet.breeds(animal).then(({ breeds }) => {
+      setBreeds(breeds.map(({ name }) => name));
+    }, console.error);
+  }, [animal, setBreed, setBreeds]);
 
   return (
     <div className="search-params">
