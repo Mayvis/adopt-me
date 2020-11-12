@@ -39,6 +39,7 @@
     "prettier": "^2.1.2"
   },
   "dependencies": {
+    "@emotion/react": "^11.0.0",
     "@frontendmasters/pet": "^1.0.3",
     "@reach/router": "^1.3.4",
     "react": "^16.14.0",

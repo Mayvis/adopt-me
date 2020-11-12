@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
-import { Link, Router } from "@reach/router";
+import { Router } from "@reach/router";
 import ThemeContext from "./ThemeContext";
+import Navbar from "./Navbar";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
 
@@ -11,9 +12,7 @@ const App = () => {
     <React.StrictMode>
       <ThemeContext.Provider value={themeHook}>
         <div>
-          <header>
-            <Link to="/">Adopt Me!</Link>
-          </header>
+          <Navbar />
           <Router>
             <SearchParams path="/" />
             <Details path="/details/:id" />
