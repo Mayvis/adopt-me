@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { render } from "react-dom";
 import { Router } from "@reach/router";
 import ThemeContext from "./ThemeContext";
 import Navbar from "./Navbar";
@@ -22,7 +21,5 @@ const App = () => {
     </React.StrictMode>
   );
 };
-
-// render(<App />, document.getElementById("root"));
 
 export default App;
