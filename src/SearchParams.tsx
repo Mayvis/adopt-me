@@ -1,15 +1,21 @@
-import React, { useState, useEffect, useContext } from "react";
-import pet, { ANIMALS } from "@frontendmasters/pet";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  FunctionComponent,
+} from "react";
+import { RouteComponentProps } from "@reach/router";
+import pet, { Animal, ANIMALS } from "@frontendmasters/pet";
 import ThemeContext from "./ThemeContext";
 import useDropdown from "./useDropdown";
 import Results from "./Results";
 
-function SearchParams() {
+const SearchParams: FunctionComponent<RouteComponentProps> = () => {
   const [location, setLocation] = useState("Seattle, WA");
-  const [breeds, setBreeds] = useState([]);
+  const [breeds, setBreeds] = useState([] as string[]);
+  const [pets, setPets] = useState([] as Animal[]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dogs", ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
-  const [pets, setPets] = useState([]);
   const [theme, setTheme] = useContext(ThemeContext);
 
   async function requestPets() {
@@ -24,6 +30,8 @@ function SearchParams() {
   useEffect(() => {
     setBreeds([]);
     setBreed("");
+
+    // tslint:disable-next-line:no-shadowed-variable
     pet.breeds(animal).then(({ breeds }) => {
       setBreeds(breeds.map(({ name }) => name));
     }, console.error);
@@ -34,7 +42,7 @@ function SearchParams() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          requestPets();
+          requestPets().then((r: void) => console.log(r));
         }}
       >
         <label htmlFor="location">
@@ -67,6 +75,6 @@ function SearchParams() {
       <Results pets={pets} />
     </div>
   );
-}
+};
 
 export default SearchParams;

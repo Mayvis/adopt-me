@@ -1,11 +1,12 @@
 /** @jsx jsx */
-import { useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Link } from "@reach/router";
 import { jsx, css } from "@emotion/react";
 import colors from "./colors";
 
-const Navbar = () => {
+const Navbar: FunctionComponent = () => {
   const [padding, setPadding] = useState(15);
+  // noinspection HtmlUnknownAttribute
   return (
     // eslint-disable-next-line
     <header
