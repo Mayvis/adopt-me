@@ -48,7 +48,7 @@ class Details extends Component<RouteComponentProps<{ id: string }>> {
 
   adopt = () => navigate(this.state.url);
 
-  render() {
+  public render() {
     const {
       name,
       animal,
