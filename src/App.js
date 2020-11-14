@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { render } from "react-dom";
 import { Router } from "@reach/router";
-import ThemeContext from "./ThemeContext";
+import { Provider } from "react-redux";
+import store from "./store";
 import Navbar from "./Navbar";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
 
 const App = () => {
-  const themeHook = useState("peru");
   return (
     <React.StrictMode>
-      <ThemeContext.Provider value={themeHook}>
+      <Provider store={store}>
         <div>
           <Navbar />
           <Router>
@@ -18,7 +18,7 @@ const App = () => {
             <Details path="/details/:id" />
           </Router>
         </div>
-      </ThemeContext.Provider>
+      </Provider>
     </React.StrictMode>
   );
 };
